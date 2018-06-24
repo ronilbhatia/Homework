@@ -20,10 +20,7 @@ class Simon
   def take_turn
     show_sequence
     require_sequence
-    if @game_over
-      game_over_message
-      reset_game
-    else
+    unless @game_over
       round_success_message
       @sequence_length += 1
     end
@@ -65,6 +62,11 @@ class Simon
     @sequence_length = 1
     @game_over = false
     @seq = []
+    sleep(2)
+    puts "Would you like to play again(y/n)"
+    input = gets.chomp.downcase
+    play if input == 'y'
+    puts "Goodbye!" if input == 'n'
   end
 end
 
