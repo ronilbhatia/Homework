@@ -41,11 +41,11 @@ class Board
     end
 
     render
-    next_turn(current_player_name, i)
+    next_turn(i)
 
   end
 
-  def next_turn(current_player_name, ending_cup_idx)
+  def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
     return :prompt if ending_cup_idx == 6 || ending_cup_idx == 13
     return :switch if cups[ending_cup_idx].length == 1
