@@ -88,7 +88,7 @@ class SnackBox
   end
 end
 
-class CorgiSnacks
+class MetaCorgiSnacks
 
   def initialize(snack_box, box_id)
     @snack_box = snack_box
@@ -125,12 +125,22 @@ class MetaCorgiSnacks
     @box_id = box_id
   end
 
-  def method_missing(name, *args)
-    # Your code goes here...
-  end
+  # def method_missing(name, *args)
+  #   # Your code goes here...
+  #   info = @snack_box.send("get_#{name.to_s}_info".to_sym(@box_id))
+  #   tastiness = @snack_box.send("get_#{name.to_s}_tastiness".to_sym(@box_id))
+  #   result = "Treat: #{info}: #{tastiness} "
+  #   tastiness > 30 ? "* #{result}" : result
+  # end
 
 
   def self.define_snack(name)
     # Your code goes here...
+    define_method(name) do
+      info = @snack_box.send("get_#{name.to_s}_info".to_sym(@box_id))
+      tastiness = @snack_box.send("get_#{name.to_s}_tastiness".to_sym(@box_id))
+      result = "Treat: #{info}: #{tastiness} "
+      tastiness > 30 ? "* #{result}" : result
+    end
   end
 end
