@@ -47,28 +47,44 @@ class SnackBox
     @data = data
   end
 
-  def get_bone_info(box_id)
-    @data[box_id]["bone"]["info"]
-  end
+  # def get_bone_info(box_id)
+  #   @data[box_id]["bone"]["info"]
+  # end
+  #
+  # def get_bone_tastiness(box_id)
+  #   @data[box_id]["bone"]["tastiness"]
+  # end
+  #
+  # def get_kibble_info(box_id)
+  #   @data[box_id]["kibble"]["info"]
+  # end
+  #
+  # def get_kibble_tastiness(box_id)
+  #   @data[box_id]["kibble"]["tastiness"]
+  # end
+  #
+  # def get_treat_info(box_id)
+  #   @data[box_id]["treat"]["info"]
+  # end
+  #
+  # def get_treat_tastiness(box_id)
+  #   @data[box_id]["treat"]["tastiness"]
+  # end
+  # def get(anything)
+  #
+  # end
 
-  def get_bone_tastiness(box_id)
-    @data[box_id]["bone"]["tastiness"]
-  end
+  def method_missing(*args)
+    method_name = args[0].to_s
+    box_id = args[1].to_i
 
-  def get_kibble_info(box_id)
-    @data[box_id]["kibble"]["info"]
-  end
+    if method_name.start_with?('get_')
+      method_words = method_name.split('_')
+      food_type = method_words[1]
+      food_query = method_words[2]
 
-  def get_kibble_tastiness(box_id)
-    @data[box_id]["kibble"]["tastiness"]
-  end
-
-  def get_treat_info(box_id)
-    @data[box_id]["treat"]["info"]
-  end
-
-  def get_treat_tastiness(box_id)
-    @data[box_id]["treat"]["tastiness"]
+      @data[box_id][food_type][food_query]
+    end
   end
 end
 
