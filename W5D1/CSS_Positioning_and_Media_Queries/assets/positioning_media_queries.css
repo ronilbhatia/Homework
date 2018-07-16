@@ -127,3 +127,7 @@ label {
 .hamburger-dropdown:hover ul {
     display: block;
  }
+
+ .hamburger-dropdown ul li:hover {
+   background: #eee;
+ }
