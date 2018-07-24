@@ -12,3 +12,11 @@
 //
 //= require rails-ujs
 //= require_tree .
+
+function addSum(sum, num) {
+  return sum + num;
+}
+
+const summation = addSum(5, 4);
+
+console.log(summation);
